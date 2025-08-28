@@ -10,10 +10,7 @@ class Solution {
             reverse = (reverse * 10) + (temp % 10);
             temp /= 10;
         }
-
-        if (x == reverse) {
-            return true;
-        }
-        return false;
+        
+        return x == reverse;
     }
 }
