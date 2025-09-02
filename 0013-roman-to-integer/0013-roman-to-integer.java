@@ -1,22 +1,42 @@
 class Solution {
     public int romanToInt(String s) {
-        Map<Character, Integer> map = new HashMap<>();
-        map.put('I', 1);
-        map.put('V', 5);
-        map.put('X', 10);
-        map.put('L', 50);
-        map.put('C', 100);
-        map.put('D', 500);
-        map.put('M', 1000);
-
+        int resultado = 0;
         int numero = 0;
-        for (int i = 0; i < s.length() - 1; i++) {
-            if (map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
-                numero -= map.get(s.charAt(i));
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            switch (s.charAt(i)) {
+                case 'I':
+                    numero = 1;
+                    break;
+                case 'V':
+                    numero = 5;
+                    break;
+                case 'X':
+                    numero = 10;
+                    break;
+                case 'L':
+                    numero = 50;
+                    break;
+                case 'C':
+                    numero = 100;
+                    break;
+                case 'D':
+                    numero = 500;
+                    break;
+                case 'M':
+                    numero = 1000;
+                    break;
+                default:
+                    break;
+            }
+
+            if (4 * numero < resultado) {
+                resultado -= numero; 
             } else {
-                numero += map.get(s.charAt(i));
+                resultado += numero;
             }
         }
-        return numero + map.get(s.charAt(s.length() - 1));
+
+        return resultado;
     }
 }
